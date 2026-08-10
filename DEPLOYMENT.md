@@ -27,11 +27,11 @@ Chỉ nhập giá trị ở dashboard của platform; không ghi secret vào rep
 | Biến | Trạng thái | Nguồn/ghi chú |
 |------|------------|---------------|
 | `PORT` | Platform tự gán | Không ghi đè bằng secret; Dockerfile đọc `$PORT` |
-| `AGENT_API_KEY` | `PENDING_MANUAL` | Secret đặt trong dashboard |
-| `REDIS_URL` | `PENDING_MANUAL` | Redis add-on hoặc Redis managed/Upstash |
-| `RATE_LIMIT_PER_MINUTE` | Cần set | `10` |
-| `MONTHLY_BUDGET_USD` | Cần set | `10.0` |
-| `LOG_LEVEL` | Cần set | `INFO` |
+| `AGENT_API_KEY` | Đã set trên Railway | Secret đặt trong dashboard |
+| `REDIS_URL` |  Đã set bằng Redis service Railway | Redis add-on hoặc Redis managed/Upstash |
+| `RATE_LIMIT_PER_MINUTE` | 10 | `10` |
+| `MONTHLY_BUDGET_USD` | 10.0 | `10.0` |
+| `LOG_LEVEL` | INFO | `INFO` |
 
 ## Lệnh Smoke Test Sau Deploy
 

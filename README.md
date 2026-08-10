@@ -1,3 +1,8 @@
+**Họ và tên: Vũ Văn Phong — Mã học viên: 2A202601647**
+
+![CI](https://github.com/VuVanPhong123/DAY12-2A202601647-VuVanPhong/actions/workflows/ci.yml/badge.svg)
+
+
 # K3 — Ngày 12: Hạ Tầng Cloud & Deployment (9h00–13h00)
 
 Đưa một AI agent từ `localhost:8000` lên một địa chỉ công khai mà người khác
