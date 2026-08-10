@@ -1,66 +1,67 @@
 # Thông Tin Deploy — Checkpoint 5
 
-> Điền file này sau khi deploy xong. `pytest tests/test_cp5.py` đọc file này
-> để tìm địa chỉ service của bạn và gọi thử.
->
-> **Chỉ ghi TÊN biến môi trường, tuyệt đối không dán giá trị API key vào đây.**
-> Repo này công khai — dán khóa vào là mất khóa.
+Tài liệu này đã chuẩn bị sẵn cho bước deploy thủ công. Chưa có thao tác
+cloud/GitHub credential nào được thực hiện trong worktree này.
 
 ## Thông Tin Học Viên
 
 | Mục | Nội dung |
 |-----|----------|
-| Họ và tên | (điền họ tên) |
-| Mã học viên | (điền mã học viên) |
-| Repo | (điền link repo DAY12-...) |
+| Họ và tên | Vũ Văn Phong |
+| Mã học viên | 2A202601647 |
+| Repo name dự kiến | `DAY12-2A202601647-VuVanPhong` |
+| Repo | https://github.com/VuVanPhong123/DAY12-2A202601647-VuVanPhong |
 
 ## Service
 
 | Mục | Nội dung |
 |-----|----------|
-| Public URL | https://TODO-thay-bang-url-that.up.railway.app |
-| Platform | Railway / Render / Cloud Run — (điền platform bạn dùng) |
-| Ngày deploy | (điền ngày) |
+| Public URL | `PENDING_MANUAL_PUBLIC_URL` |
+| Platform | `PENDING_MANUAL_PLATFORM` — chọn Railway hoặc Render sau khi setup |
+| Ngày deploy | `PENDING_MANUAL_DEPLOY_DATE` |
 
-## Biến Môi Trường Đã Set Trên Cloud
+## Biến Môi Trường Cần Set Trên Cloud
 
-Ghi tên biến và **nguồn giá trị**, không ghi giá trị:
+Chỉ nhập giá trị ở dashboard của platform; không ghi secret vào repo.
 
-| Biến | Đã set | Ghi chú |
-|------|--------|---------|
-| `PORT` | ✅ | platform tự gán |
-| `AGENT_API_KEY` | ✅ | đặt trong dashboard, không nằm trong repo |
-| `REDIS_URL` | ✅ | (điền: Redis add-on của platform / Upstash / ...) |
-| `RATE_LIMIT_PER_MINUTE` | ✅ | 10 |
-| `MONTHLY_BUDGET_USD` | ✅ | 10.0 |
-| `LOG_LEVEL` | ✅ | INFO |
+| Biến | Trạng thái | Nguồn/ghi chú |
+|------|------------|---------------|
+| `PORT` | Platform tự gán | Không ghi đè bằng secret; Dockerfile đọc `$PORT` |
+| `AGENT_API_KEY` | `PENDING_MANUAL` | Secret đặt trong dashboard |
+| `REDIS_URL` | `PENDING_MANUAL` | Redis add-on hoặc Redis managed/Upstash |
+| `RATE_LIMIT_PER_MINUTE` | Cần set | `10` |
+| `MONTHLY_BUDGET_USD` | Cần set | `10.0` |
+| `LOG_LEVEL` | Cần set | `INFO` |
 
-## Lệnh Kiểm Tra
+## Lệnh Smoke Test Sau Deploy
 
-Thay `<URL>` bằng Public URL ở trên:
+Thay marker `PENDING_MANUAL_PUBLIC_URL` bằng URL thật sau khi platform cấp
+domain. Không dán API key vào file này.
 
 ```bash
-# 1. Liveness — mong đợi 200 {"status":"ok"}
-curl -i <URL>/health
+BASE_URL="PENDING_MANUAL_PUBLIC_URL"
 
-# 2. Readiness — mong đợi 200 {"status":"ready"} (đã nối được Redis)
-curl -i <URL>/ready
+# 1. Liveness — mong đợi 200 {"status":"ok"}
+curl -i "$BASE_URL/health"
+
+# 2. Readiness — mong đợi 200 {"status":"ready"}
+curl -i "$BASE_URL/ready"
 
 # 3. Không có API key — mong đợi 401
-curl -i -X POST <URL>/ask \
+curl -i -X POST "$BASE_URL/ask" \
   -H "Content-Type: application/json" \
   -d '{"question":"Hello"}'
 
-# 4. Có API key — mong đợi 200 kèm câu trả lời
-curl -i -X POST <URL>/ask \
+# 4. Có API key — lấy từ biến môi trường local, không ghi vào repo
+curl -i -X POST "$BASE_URL/ask" \
   -H "Content-Type: application/json" \
   -H "X-API-Key: $AGENT_API_KEY" \
   -H "X-User-Id: sv-test" \
   -d '{"question":"Deploy là gì?"}'
 
-# 5. Rate limit — gọi 15 lần, những lần cuối phải trả 429
+# 5. Rate limit — gọi 15 lần, những lần cuối dự kiến trả 429
 for i in $(seq 1 15); do
-  curl -s -o /dev/null -w "%{http_code} " -X POST <URL>/ask \
+  curl -s -o /dev/null -w "%{http_code} " -X POST "$BASE_URL/ask" \
     -H "Content-Type: application/json" \
     -H "X-API-Key: $AGENT_API_KEY" \
     -H "X-User-Id: sv-test" \
@@ -70,32 +71,21 @@ done; echo
 
 ## Kết Quả Chạy Thật
 
-Dán output của các lệnh trên vào đây:
-
-```
-(điền output)
+```text
+PENDING_MANUAL_DEPLOY_OUTPUT
 ```
 
 ## Ảnh Chụp Màn Hình
 
-Đặt ảnh trong thư mục `screenshots/`:
+Sau khi deploy thủ công, bổ sung:
 
-- `screenshots/dashboard.png` — trang quản lý service trên platform
-- `screenshots/health.png` — kết quả gọi `/health` từ trình duyệt hoặc curl
+- `screenshots/dashboard.png` — dashboard service thật.
+- `screenshots/health.png` — kết quả gọi `/health` thật.
 
----
+Trạng thái hiện tại: `PENDING_MANUAL_SCREENSHOT`.
 
-## Nếu Dùng Phương Án Dự Phòng
+## Ghi Chú
 
-Không đăng ký được tài khoản cloud? Vẫn nộp được bài, nhưng CP5 tối đa 60% điểm:
-
-1. Đặt `LOCAL_FALLBACK=true` trong `.env`
-2. Chạy `docker compose up -d` rồi kiểm tra `docker compose ps`
-3. Chụp màn hình vào `screenshots/`
-4. Chạy `pytest tests/test_cp5.py -v` — bộ test sẽ tự chuyển sang kiểm tra
-   `http://localhost:8000`
-5. Ghi rõ lý do không deploy được vào phần dưới đây:
-
-```
-(điền lý do nếu dùng phương án dự phòng, ngược lại xóa mục này)
-```
+Không bật `LOCAL_FALLBACK=true` để giả lập CP5. CP5 và bằng chứng online sẽ
+được hoàn thiện sau khi user tạo service, nhập secret/Redis trên cloud và lấy
+URL thật.
