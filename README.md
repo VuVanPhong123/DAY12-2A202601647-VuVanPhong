@@ -1,6 +1,6 @@
 **Họ và tên: Vũ Văn Phong — Mã học viên: 2A202601647**
 
-![CI](https://github.com/VuVanPhong123/DAY12-2A202601647-VuVanPhong/actions/workflows/ci.yml/badge.svg)
+![CI](https://github.com/VuVanPhong123/K3-DAY12-2A202601647-VuVanPhong/actions/workflows/ci.yml/badge.svg)
 
 
 # K3 — Ngày 12: Hạ Tầng Cloud & Deployment (9h00–13h00)
@@ -35,7 +35,7 @@ cùng cấu trúc lạ): cả hai bài đều 0 điểm**, không phân biệt a
 Repo nộp bài **bắt buộc** đặt tên theo mẫu:
 
 ```
-DAY12-<Mã học viên>-<Họ và Tên>
+K3-DAY12-<Mã học viên>-<Họ và Tên>
 ```
 
 **Quy tắc viết:**
@@ -47,8 +47,8 @@ DAY12-<Mã học viên>-<Họ và Tên>
 
 | Học viên | Tên repo |
 |----------|----------|
-| 2A202600280 — Nguyễn Văn An | `DAY12-2A202600280-NguyenVanAn` |
-| 2A202601111 — Trần Thị Bích Hà | `DAY12-2A202601111-TranThiBichHa` |
+| 2A202600280 — Nguyễn Văn An | `K3-DAY12-2A202600280-NguyenVanAn` |
+| 2A202601111 — Trần Thị Bích Hà | `K3-DAY12-2A202601111-TranThiBichHa` |
 
 **Sai tên repo = trừ 5 điểm.** Đây là cách duy nhất để Lab Coach biết bài của ai
 trong khoảng 1000 repo.
@@ -59,7 +59,7 @@ trong khoảng 1000 repo.
 # 1. Fork repo lab về và đổi tên theo cú pháp bên trên
 # 2. Clone repo lab về máy
 git clone <URL repo bạn đã fork>
-cd DAY12-V202400123-NguyenVanAn
+cd K3-DAY12-V202400123-NguyenVanAn
 
 # 3. Commit và Push khi hoàn thiện bài lab
 git add .
@@ -167,7 +167,7 @@ trong RAM (đủ để làm CP1/CP3/CP4, nhưng CP2 và CP5 vẫn cần Docker).
 ## Cấu Trúc Thư Mục
 
 ```
-DAY12-<MãHV>-<HọTên>/
+K3-DAY12-<MãHV>-<HọTên>/
 ├── README.md              # File này — quy định, lịch trình, chấm điểm, nộp bài
 ├── LAB_GUIDE.md           # Hướng dẫn chi tiết từng block
 ├── exercises.md           # 10 câu phản ánh
@@ -270,7 +270,7 @@ Nộp **link repository** lên Codelab. Repo phải ở chế độ public.
 
 ## Danh Sách Kiểm Tra Trước Khi Nộp
 
-- [ ] Repo đúng tên `DAY12-<MãHV>-<HọTên>`, viết liền không dấu
+- [ ] Repo đúng tên `K3-DAY12-<MãHV>-<HọTên>`, viết liền không dấu
 - [ ] `pytest tests/ -v` — đã chạy và biết rõ test nào còn rớt, vì sao
 - [ ] `python grade.py` — xem điểm, mục tiêu ≥ 75/100
 - [ ] `exercises.md` — đủ 10 câu, viết bằng lời của mình

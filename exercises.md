@@ -96,7 +96,21 @@ lịch sử chung.
 
 ### Câu 10 — Deploy thật (CP5)
 
-`PENDING MANUAL EVIDENCE`: lượt này chưa thực hiện deploy cloud nên mình không
-bịa lỗi, log hay cách sửa. Sau khi deploy thủ công, cần cập nhật một lỗi hoặc
-quan sát thật từ dashboard/log (nếu có), nguyên nhân đã xác minh và cách sửa
-vào câu này.
+Lần deploy đầu tiên build Railway thành công nhưng container không start. Log
+ghi:
+
+```text
+Error: Invalid value for '--port': '$PORT' is not a valid integer.
+```
+
+Nguyên nhân đã xác minh là `railway.toml` có custom `startCommand` truyền
+`$PORT` trực tiếp. Railway runtime không shell-expand biến trong command đó nên
+Uvicorn nhận literal `$PORT`. Mình xóa custom `startCommand` khỏi
+`railway.toml`, để Dockerfile CMD chạy:
+
+```dockerfile
+CMD ["sh", "-c", "uvicorn app.main:app --host 0.0.0.0 --port ${PORT:-8000}"]
+```
+
+Sau redeploy, deployment SUCCESS; `/health` trả 200, `/ready` trả 200 và Redis
+đã kết nối.
