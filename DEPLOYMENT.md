@@ -16,9 +16,9 @@ cloud/GitHub credential nào được thực hiện trong worktree này.
 
 | Mục | Nội dung |
 |-----|----------|
-| Public URL | `PENDING_MANUAL_PUBLIC_URL` |
-| Platform | `PENDING_MANUAL_PLATFORM` — chọn Railway hoặc Render sau khi setup |
-| Ngày deploy | `PENDING_MANUAL_DEPLOY_DATE` |
+| Public URL | https://day12-agent-production-f780.up.railway.app/ |
+| Platform | Railway |
+| Ngày deploy | 2026-08-10 |
 
 ## Biến Môi Trường Cần Set Trên Cloud
 
@@ -71,9 +71,8 @@ done; echo
 
 ## Kết Quả Chạy Thật
 
-```text
-PENDING_MANUAL_DEPLOY_OUTPUT
-```
+![Văn bản thay thế](evidence_assets\dashboard.png)
+![Văn bản thay thế](evidence_assets\health.png)
 
 ## Ảnh Chụp Màn Hình
 
